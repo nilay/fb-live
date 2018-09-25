@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1, maximum-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta id="theme-color" name="theme-color" content="#ffffff">
+
+  <base target="_blank">
+
+  <title> nFusz Facebook Live</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+  <script>
+  const appId = '279246242904501';
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : appId,
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v3.1'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+	<script src="https://connect.facebook.net/en_US/fbinstant.6.0.js"></script>
+
+  <script type="text/javascript">
+
+    const BACKEND_URL = 'https://localhost';
+    const IMAGES = ['pp.jpg', 'ppsmall.jpg']
+    var preloaded = {};
+
+    window.onload = function() {
+      FBInstant.initializeAsync().then(function() {
+        // Preload images
+        IMAGES.forEach(function(imgName, index){
+          var img = new Image();
+          img.src = `./images/${imgName}`;
+          preloaded[imgName] = img;
+          FBInstant.setLoadingProgress(Math.ceil(index / IMAGES.length)*100);
+        })
+
+        // Finished loading. Start the game
+        FBInstant.startGameAsync().then(function() {
+
+          var contextId = FBInstant.context.getID();
+          var contextType = FBInstant.context.getType();
+          var playerName = FBInstant.player.getName();
+          var playerPic = FBInstant.player.getPhoto();
+          var playerId = FBInstant.player.getID();
+
+          console.log(`PlayerPhotoUrl = ${playerPic}`)
+          startGame();
+        });
+
+      });
+
+    };
+  </script>
+
+
+  <aside draggable="true" id="dragme">
+    <button>Click Here </button>
+  </aside>
+
+  <div id="container">
+  	<h1 style="color:red; text-align:center"> nFusz Facebook Live </h1>
+
+    <div align="center">
+      <video id="gum-local" autoplay playsinline></video>
+    </div>
+
+    <div align="center">
+      <button id="golive">Go Live</button>
+    </div>
+
+    <div id="errorMsg"></div>
+
+
+    <!-- Tab links -->
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'button')">Button</button>
+      <button class="tablinks" onclick="openCity(event, 'other')">Other</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="button" class="tabcontent">
+      <h3>Button</h3>
+      <p>Button customization</p>
+    </div>
+
+    <div id="other" class="tabcontent">
+      <h3>Other</h3>
+      <p>Other control wll come here</p>
+    </div>
+
+    <!-- End Tab links -->
+
+    <script src="js/main.js?a=140"></script>
+
+</body>
+</html>
