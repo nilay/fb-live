@@ -1,12 +1,13 @@
 <html>
 <head>
     <script language="javascript" src="js/flashphoner.js"></script>
-    <script language="javascript" src="js/streamer.js?127"></script>
+    <script language="javascript" src="js/streamer.js?136"></script>
 </head>
 <body onLoad="init()">
 <h1>The streamer</h1>
+<input id="rtmpurl" size="120"/>
 <div id="localVideo" style="width:720px;height:480px;border: 1px solid"></div>
-<input type="button" value="start" onClick="start('rtmp://live-api-s.facebook.com:80/rtmp/103855563922160?ds=1&s_sw=0&s_vt=api-s&a=ATjiA8AaZu9EA12K')"/>
+<input type="button" value="start" onClick="start(document.getElementById('rtmpurl').value)"/>
 <p id="status">Warning error will come here</p>
 </body>
 </html>

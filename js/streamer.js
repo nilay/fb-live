@@ -6,7 +6,7 @@ function init(){
 }
 
 function start(rtmpUrl) {
-    Flashphoner.createSession({urlServer: "wss://demo.flashphoner.com:8443"}).on(Flashphoner.constants.SESSION_STATUS.ESTABLISHED, function (session) {
+    Flashphoner.createSession({urlServer: "wss://34.199.108.19:8443"}).on(Flashphoner.constants.SESSION_STATUS.ESTABLISHED, function (session) {
         //session connected, start streaming
         startStreaming(session, rtmpUrl);
     }).on(Flashphoner.constants.SESSION_STATUS.DISCONNECTED, function () {
@@ -17,7 +17,7 @@ function start(rtmpUrl) {
 }
 
 function startStreaming(session, rtmpUrl) {
-    var streamName = "stream222"
+    var streamName = "s2233"
     session.createStream({
         name: streamName,
         display: localVideo,
@@ -37,12 +37,18 @@ function startStreaming(session, rtmpUrl) {
 
 function broadcastToRtmp(publishStream, rtmpUrl, streamName){
   xhr = new XMLHttpRequest();
-  var url = "https://demo.flashphoner.com:8444/rest-api/push/startup";
-  xhr.open("POST", url, false);
+  var url = "https://34.199.108.19:8888/rest-api/push/startup";
+  xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
 
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          console.log(xhr.responseText)
+      }
+  }
+
   var data = JSON.stringify({"streamName":streamName,"rtmpUrl":rtmpUrl});
-  var response = xhr.send(data);
+  xhr.send(data);
 }
 
 function setStatus(status) {
