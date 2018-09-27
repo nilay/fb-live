@@ -38,7 +38,7 @@ function start(rtmpUrl) {
 }
 
 function startStreaming(session, rtmpUrl) {
-    var streamName = "s2234"
+    var streamName = "s2235"
     session.createStream({
         name: streamName,
         display: localVideo,
