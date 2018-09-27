@@ -4,10 +4,29 @@
     <script language="javascript" src="js/streamer.js?136"></script>
 </head>
 <body onLoad="init()">
-<h1>The streamer</h1>
-<input id="rtmpurl" size="120"/>
-<div id="localVideo" style="width:720px;height:480px;border: 1px solid"></div>
-<input type="button" value="start" onClick="start(document.getElementById('rtmpurl').value)"/>
-<p id="status">Warning error will come here</p>
+  <script>
+    const appId = '279246242904501';
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId            : appId,
+        autoLogAppEvents : true,
+        xfbml            : true,
+        version          : 'v3.1'
+      });
+    };
+
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <h1>The streamer</h1>
+  <div id="localVideo" style="width:720px;height:480px;border: 1px solid"></div>
+  <input id="golive" type="button" value="Go Live" onClick="fbLogin();"/>
+  <p id="status">Warning error will come here</p>
 </body>
 </html>
