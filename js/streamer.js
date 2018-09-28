@@ -27,7 +27,7 @@ function fbLogin(){
 
 
 function start(rtmpUrl) {
-    Flashphoner.createSession({urlServer: "wss://34.199.108.19:8443"}).on(Flashphoner.constants.SESSION_STATUS.ESTABLISHED, function (session) {
+    Flashphoner.createSession({urlServer: "wss://app.qwyet.com:8443"}).on(Flashphoner.constants.SESSION_STATUS.ESTABLISHED, function (session) {
         //session connected, start streaming
         startStreaming(session, rtmpUrl);
     }).on(Flashphoner.constants.SESSION_STATUS.DISCONNECTED, function () {
