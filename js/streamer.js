@@ -25,7 +25,7 @@ function fbLogin(){
   }, {scope: 'publish_video,email'});
 }
 
-
+// connect and stream
 function start(rtmpUrl) {
     Flashphoner.createSession({urlServer: "wss://app.qwyet.com:8443"}).on(Flashphoner.constants.SESSION_STATUS.ESTABLISHED, function (session) {
         //session connected, start streaming
