@@ -58,7 +58,7 @@ function startStreaming(session, rtmpUrl) {
 
 function broadcastToRtmp(publishStream, rtmpUrl, streamName){
   xhr = new XMLHttpRequest();
-  var url = "https://34.199.108.19:8888/rest-api/push/startup";
+  var url = "https://app.qwyet.com:8888/rest-api/push/startup";
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json");
 
