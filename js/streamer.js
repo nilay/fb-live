@@ -6,7 +6,7 @@ function init(){
 }
 
 function createFbVideoStream(userId){
-  FB.api('/' + userId + '/live_videos', "POST", function(response) {
+  FB.api('/' + userId + '/live_videos', "POST", {"privacy":{"value":"EVERYONE"}}, function(response) {
     console.log("Rtmp url fetch sucessfull. " + response.stream_url);
     // we have received rtmp url from facebook.
     // lets start streaming
