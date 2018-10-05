@@ -10,7 +10,7 @@ function createFbVideoStream(userId){
     console.log("Rtmp url fetch sucessfull. " + response.stream_url);
     // we have received rtmp url from facebook.
     // lets start streaming
-    start(response.stream_url);
+    start(response.stream_url, userId);
   });
 }
 
@@ -26,10 +26,10 @@ function fbLogin(){
 }
 
 // connect and stream
-function start(rtmpUrl) {
+function start(rtmpUrl, userId) {
     Flashphoner.createSession({urlServer: "wss://app.qwyet.com:8443"}).on(Flashphoner.constants.SESSION_STATUS.ESTABLISHED, function (session) {
         //session connected, start streaming
-        startStreaming(session, rtmpUrl);
+        startStreaming(session, rtmpUrl, userId);
     }).on(Flashphoner.constants.SESSION_STATUS.DISCONNECTED, function () {
         setStatus("DISCONNECTED");
     }).on(Flashphoner.constants.SESSION_STATUS.FAILED, function () {
@@ -37,8 +37,8 @@ function start(rtmpUrl) {
     });
 }
 
-function startStreaming(session, rtmpUrl) {
-    var streamName = "s2237"
+function startStreaming(session, rtmpUrl, userId) {
+    var streamName = "s" + userId
     session.createStream({
         name: streamName,
         display: localVideo,
